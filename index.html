@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mirage Glass & Resin</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+/* LANGUAGE */
+.lang {
+    margin-top: 20px;
+}
+
+.lang button {
+    margin: 5px;
+    padding: 8px 14px;
+    border: 1px solid #555;
+    background: transparent;
+    color: white;
+    border-radius: 20px;
+}
+
+/* PRODUCTS */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    background: linear-gradient(145deg, #111, #1c1c1c);
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+/* FORM */
+.form-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+input, textarea {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+button.submit {
+    background: linear-gradient(45deg, #888, #444);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 20px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #aaa;
+}
+
+a {
+    color: #ccc;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" class="logo">
+    <h1>Mirage Glass & Resin</h1>
+
+    <div class="lang">
+        <button onclick="setLang('ru')">RU</button>
+        <button onclick="setLang('en')">EN</button>
+        <button onclick="setLang('cn')">中文</button>
+    </div>
+</header>
+
+<section class="products" id="products"></section>
+
+<section class="form-section">
+    <h2 id="formTitle">Оставить заявку</h2>
+
+    <form action="https://formspree.io/f/mwkgybqg" method="POST">
+        <input type="text" name="name" placeholder="Имя" required><br>
+        <input type="tel" name="phone" placeholder="Телефон" required><br>
+        <textarea name="message" placeholder="Ваш заказ"></textarea><br>
+        <button class="submit">Отправить</button>
+    </form>
+</section>
+
+<footer>
+    <p>Телефон: +79127119017</p>
+    <p>
+        Telegram:
+        <a href="https://t.me/MirageGlassResin">MirageGlassResin</a>
+    </p>
+</footer>
+
+<script>
+const data = {
+    ru: {
+        products: ["Брошки","Брелки","Подвески","Подставки","Ручки","Подстаканники","Тёмный люкс"],
+        form: "Оставить заявку"
+    },
+    en: {
+        products: ["Brooches","Keychains","Pendants","Phone stands","Pens","Cup holders","Dark luxury"],
+        form: "Send request"
+    },
+    cn: {
+        products: ["胸针","钥匙扣","吊坠","手机支架","笔","杯垫","暗黑奢华"],
+        form: "提交订单"
+    }
+}
+
+function setLang(lang){
+    const products = document.getElementById("products");
+    products.innerHTML = "";
+
+    data[lang].products.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerText = p;
+        products.appendChild(div);
+    });
+
+    document.getElementById("formTitle").innerText = data[lang].form;
+}
+
+setLang("ru");
+</script>
+
+</body>
+</html>
